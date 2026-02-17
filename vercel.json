@@ -1,27 +1,33 @@
 {
-    "buildCommand": "npm run build",
+    "buildCommand": "",
     "outputDirectory": "front_end",
-    "framework": "static",
     "regions": [
         "iad1"
     ],
-    "env": {
-        "REACT_APP_API_URL": "@api_url"
+    "functions": {
+        "api/index.py": {
+            "runtime": "python3.9"
+        }
     },
     "rewrites": [
         {
             "source": "/api/(.*)",
-            "destination": "/api/$1"
+            "destination": "/api/index.py"
         },
         {
             "source": "/(.*)",
             "destination": "/index.html"
         }
     ],
-    "functions": {
-        "api/**/*.py": {
-            "runtime": "python3.9"
+    "headers": [
+        {
+            "source": "/(.*)",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=3600"
+                }
+            ]
         }
-    },
-    "devCommand": "python back_end/app.py & cd front_end && python -m http.server 8000"
+    ]
 }
