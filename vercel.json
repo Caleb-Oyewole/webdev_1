@@ -1,0 +1,27 @@
+{
+    "buildCommand": "npm run build",
+    "outputDirectory": "front_end",
+    "framework": "static",
+    "regions": [
+        "iad1"
+    ],
+    "env": {
+        "REACT_APP_API_URL": "@api_url"
+    },
+    "rewrites": [
+        {
+            "source": "/api/(.*)",
+            "destination": "/api/$1"
+        },
+        {
+            "source": "/(.*)",
+            "destination": "/index.html"
+        }
+    ],
+    "functions": {
+        "api/**/*.py": {
+            "runtime": "python3.9"
+        }
+    },
+    "devCommand": "python back_end/app.py & cd front_end && python -m http.server 8000"
+}
