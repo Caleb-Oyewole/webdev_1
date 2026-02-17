@@ -50,45 +50,69 @@ function initializeNavigation() {
 
 function initializePageNavigation() {
     // Login button in navbar
-    document.getElementById('login-btn').addEventListener('click', () => {
-        showPage('login-page');
-    });
+    const loginBtn = document.getElementById('login-btn');
+    if (loginBtn) {
+        loginBtn.addEventListener('click', () => {
+            showPage('login-page');
+        });
+    }
 
     // Signup button in navbar
-    document.getElementById('signup-btn').addEventListener('click', () => {
-        showPage('signup-page');
-    });
+    const signupBtn = document.getElementById('signup-btn');
+    if (signupBtn) {
+        signupBtn.addEventListener('click', () => {
+            showPage('signup-page');
+        });
+    }
 
     // Back buttons
-    document.getElementById('back-from-login').addEventListener('click', () => {
-        showPage('home-page');
-    });
+    const backLogin = document.getElementById('back-from-login');
+    if (backLogin) {
+        backLogin.addEventListener('click', () => {
+            showPage('home-page');
+        });
+    }
 
-    document.getElementById('back-from-signup').addEventListener('click', () => {
-        showPage('home-page');
-    });
+    const backSignup = document.getElementById('back-from-signup');
+    if (backSignup) {
+        backSignup.addEventListener('click', () => {
+            showPage('home-page');
+        });
+    }
 
     // Switch between login/signup
-    document.getElementById('switch-to-signup').addEventListener('click', (e) => {
-        e.preventDefault();
-        showPage('signup-page');
-    });
+    const switchSignup = document.getElementById('switch-to-signup');
+    if (switchSignup) {
+        switchSignup.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('signup-page');
+        });
+    }
 
-    document.getElementById('switch-to-login').addEventListener('click', (e) => {
-        e.preventDefault();
-        showPage('login-page');
-    });
+    const switchLogin = document.getElementById('switch-to-login');
+    if (switchLogin) {
+        switchLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('login-page');
+        });
+    }
 
     // Browse listings button
-    document.getElementById('browse-btn').addEventListener('click', () => {
-        showPage('listings-page');
-    });
+    const browseBtn = document.getElementById('browse-btn');
+    if (browseBtn) {
+        browseBtn.addEventListener('click', () => {
+            showPage('listings-page');
+        });
+    }
 
-    // Explore more button
-    document.getElementById('explore-more').addEventListener('click', (e) => {
-        e.preventDefault();
-        showPage('special-offers-page');
-    });
+    // Explore more button (optional)
+    const exploreMore = document.getElementById('explore-more');
+    if (exploreMore) {
+        exploreMore.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('special-offers-page');
+        });
+    }
 }
 
 // ==================== AUTHENTICATION ====================

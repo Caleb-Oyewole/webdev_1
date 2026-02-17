@@ -6,6 +6,17 @@ import json
 app = Flask(__name__)
 CORS(app)
 
+# ==================== ROOT ROUTE ====================
+
+@app.route('/', methods=['GET'])
+def root():
+    """Root endpoint"""
+    return jsonify({
+        'success': True,
+        'message': 'Houdy API Server is running',
+        'version': '1.0'
+    }), 200
+
 # In-memory databases
 users_db = [
     {"id": 1, "name": "John Doe", "email": "john@example.com", "password": "123456"}
