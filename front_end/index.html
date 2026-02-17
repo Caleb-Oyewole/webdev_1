@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Houdy - Finding Your Next Apartment</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -13,149 +14,364 @@
 
 <body class="bg-[#F8F9FA] text-[#1A1A1A]">
 
-    <nav class="flex items-center justify-between px-6 md:px-20 py-6 bg-white/80 backdrop-blur-md sticky top-0 z-50">
-        <div class="flex items-center gap-2">
+    <!-- Navigation -->
+    <nav
+        class="flex items-center justify-between px-6 md:px-20 py-6 bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <div class="flex items-center gap-2 cursor-pointer" id="nav-logo">
             <span class="text-xl font-extrabold text-[#E67E22]">Houdy</span>
         </div>
         <div class="hidden md:flex space-x-12 text-sm font-bold text-zinc-500">
-            <a href="#" class="hover:text-[#E67E22] transition" id="nav-home">Home</a>
-            <a href="#listings" class="hover:text-[#E67E22] transition" id="nav-listings">Listings</a>
+            <a href="#" class="hover:text-[#E67E22] transition nav-link" data-page="home">Home</a>
+            <a href="#" class="hover:text-[#E67E22] transition nav-link" data-page="special-offers">Special Offers</a>
+            <a href="#" class="hover:text-[#E67E22] transition nav-link" data-page="listings">All Listings</a>
         </div>
         <div class="flex items-center gap-4">
-            <button class="text-xs font-bold px-4" id="login-btn">Login</button>
+            <button class="text-xs font-bold px-4 hover:text-[#E67E22]" id="login-btn">Login</button>
             <button
                 class="bg-[#E67E22] text-white px-6 py-2.5 rounded-lg text-xs font-bold shadow-lg shadow-orange-100 hover:bg-[#D35400] transition"
-                id="signup-btn">Create
-                account</button>
+                id="signup-btn">Create Account</button>
         </div>
     </nav>
 
-    <header class="relative bg-white pt-10 pb-20 px-6 md:px-20 overflow-hidden">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
-            <div class="z-10">
-                <h1 class="text-5xl md:text-6xl font-extrabold leading-[1.1] text-[#1A1A1A] mb-6">
-                    Finding Your Next <br> Apartment Got Easier
-                </h1>
-                <p class="text-zinc-500 text-sm leading-relaxed mb-10 max-w-md">
-                    Find comfortable, affordable and convenient student accommodations around your campus.
-                </p>
-                <button class="bg-[#E67E22] text-white px-8 py-3 rounded-md text-xs font-bold mb-10" id="tour-btn">Take
-                    a
-                    tour</button>
-                <div class="flex gap-12 border-t border-zinc-100 pt-8">
-                    <div>
-                        <p class="text-2xl font-extrabold" id="listings-count">542+</p>
-                        <p class="text-zinc-400 text-[10px] font-bold uppercase">Listings</p>
+    <!-- ==================== HOME PAGE ==================== -->
+    <div id="home-page" class="page-content active">
+        <header class="relative bg-white pt-10 pb-20 px-6 md:px-20 overflow-hidden">
+            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
+                <div class="z-10">
+                    <h1 class="text-5xl md:text-6xl font-extrabold leading-[1.1] text-[#1A1A1A] mb-6">
+                        Finding Your Next <br> <span class="text-[#E67E22]">Apartment</span> Got Easier
+                    </h1>
+                    <p class="text-zinc-500 text-sm leading-relaxed mb-10 max-w-md">
+                        Find comfortable, affordable and convenient student accommodations around your campus.
+                    </p>
+                    <div class="flex gap-4">
+                        <button class="bg-[#E67E22] text-white px-8 py-3 rounded-md text-xs font-bold"
+                            id="tour-btn">Take a Tour</button>
+                        <button
+                            class="border-2 border-[#E67E22] text-[#E67E22] px-8 py-3 rounded-md text-xs font-bold hover:bg-orange-50"
+                            id="browse-btn">Browse Listings</button>
                     </div>
-                    <div>
-                        <p class="text-2xl font-extrabold" id="students-count">3897+</p>
-                        <p class="text-zinc-400 text-[10px] font-bold uppercase">Students</p>
+                    <div class="flex gap-12 border-t border-zinc-100 pt-8 mt-8">
+                        <div>
+                            <p class="text-2xl font-extrabold" id="listings-count">542+</p>
+                            <p class="text-zinc-400 text-[10px] font-bold uppercase">Listings</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-extrabold" id="students-count">3897+</p>
+                            <p class="text-zinc-400 text-[10px] font-bold uppercase">Students</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-extrabold">15K+</p>
+                            <p class="text-zinc-400 text-[10px] font-bold uppercase">Bookings</p>
+                        </div>
                     </div>
                 </div>
+                <div class="relative">
+                    <div class="absolute -top-20 -right-20 w-96 h-96 bg-orange-50 rounded-full blur-3xl opacity-50">
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200"
+                        class="rounded-bl-[100px] rounded-tr-[100px] w-full h-[550px] object-cover relative z-10 shadow-2xl">
+                </div>
             </div>
-            <div class="relative">
-                <div class="absolute -top-20 -right-20 w-96 h-96 bg-orange-50 rounded-full blur-3xl opacity-50"></div>
-                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200"
-                    class="rounded-bl-[100px] rounded-tr-[100px] w-full h-[550px] object-cover relative z-10 shadow-2xl">
-            </div>
-        </div>
 
-        <div
-            class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[90%] max-w-4xl bg-black text-white p-2 pl-6 rounded-2xl shadow-2xl flex flex-col md:flex-row items-center gap-4 z-20">
-            <div class="flex-1 text-left w-full py-2">
-                <p class="text-[9px] text-zinc-500 uppercase font-bold tracking-widest mb-1">Location</p>
-                <input type="text" placeholder="Where are you going?" id="search-location"
-                    class="bg-transparent border-none outline-none w-full text-xs">
-            </div>
-            <div class="h-8 w-[1px] bg-zinc-800 hidden md:block"></div>
-            <div class="flex-1 text-left w-full py-2">
-                <p class="text-[9px] text-zinc-500 uppercase font-bold tracking-widest mb-1">Apartment Type</p>
-                <select class="bg-transparent border-none outline-none w-full text-xs appearance-none"
-                    id="apartment-type">
-                    <option>Select Apartment Type</option>
-                    <option>Studio</option>
-                    <option>1 Bedroom</option>
-                    <option>2 Bedroom</option>
-                    <option>3+ Bedroom</option>
-                </select>
-            </div>
-            <button
-                class="bg-[#E67E22] w-full md:w-auto px-10 py-4 rounded-xl font-bold text-xs hover:bg-[#D35400] transition"
-                id="search-btn">Search</button>
-        </div>
-    </header>
-
-    <section id="listings" class="mt-40 px-6 md:px-20 max-w-7xl mx-auto">
-        <div class="flex justify-between items-end mb-12">
-            <div>
-                <h2 class="text-2xl font-extrabold">Special Offers</h2>
-                <p class="text-zinc-400 text-xs mt-1">Recommended student listings with discount rates.</p>
-            </div>
-            <a href="#" class="text-[#E67E22] text-xs font-bold hover:underline" id="explore-more">Explore more special
-                offers →</a>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="listings-container">
+            <!-- Enhanced Search Bar -->
             <div
-                class="bg-white rounded-3xl p-3 border border-zinc-100 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer listing-card">
-                <div class="relative rounded-2xl overflow-hidden h-52 mb-4">
-                    <span
-                        class="absolute top-3 left-3 bg-[#E67E22] text-white text-[9px] font-bold px-3 py-1 rounded-full z-10 uppercase">Live</span>
-                    <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=600"
-                        class="w-full h-full object-cover">
-                </div>
-                <div class="px-2 pb-2">
-                    <div class="flex justify-between items-center mb-1">
-                        <h4 class="font-bold text-sm">Deluxe Studio</h4>
-                        <span class="text-[10px] font-bold bg-zinc-50 px-2 py-1 rounded">⭐ 4.5</span>
+                class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[95%] max-w-5xl bg-black text-white p-6 rounded-3xl shadow-2xl">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Location Filter -->
+                    <div class="text-left">
+                        <p class="text-[9px] text-zinc-500 uppercase font-bold tracking-widest mb-2">Location</p>
+                        <input type="text" placeholder="Enter city or area..." id="search-location"
+                            class="bg-zinc-900 border border-zinc-700 rounded-lg outline-none w-full py-2.5 px-3 text-xs placeholder-zinc-400 hover:border-[#E67E22] transition">
                     </div>
-                    <p class="text-zinc-400 text-xs mb-3">Lagos, Nigeria</p>
-                    <p class="text-[#E67E22] font-extrabold text-lg">$450,000<span
-                            class="text-zinc-400 text-[10px] font-normal">/yr</span></p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section class="bg-[#E67E22] mt-32 py-16 px-6 md:px-20 text-white">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-2xl font-extrabold text-center mb-12">More Reasons Why You Should Choose Houdy</h2>
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white p-8 rounded-2xl text-center text-[#1A1A1A] shadow-lg">
+                    <!-- Apartment Type Filter -->
+                    <div class="text-left">
+                        <p class="text-[9px] text-zinc-500 uppercase font-bold tracking-widest mb-2">Apartment Type</p>
+                        <select id="apartment-type"
+                            class="bg-zinc-900 border border-zinc-700 rounded-lg outline-none w-full py-2.5 px-3 text-xs appearance-none hover:border-[#E67E22] transition">
+                            <option value="">All Types</option>
+                            <option>Studio</option>
+                            <option>1 Bedroom</option>
+                            <option>2 Bedroom</option>
+                            <option>3+ Bedroom</option>
+                        </select>
+                    </div>
+
+                    <!-- Price Range Filter -->
+                    <div class="text-left">
+                        <p class="text-[9px] text-zinc-500 uppercase font-bold tracking-widest mb-2">Price Range</p>
+                        <select id="price-range"
+                            class="bg-zinc-900 border border-zinc-700 rounded-lg outline-none w-full py-2.5 px-3 text-xs appearance-none hover:border-[#E67E22] transition">
+                            <option value="">All Prices</option>
+                            <option value="0-200000">$0 - $200K</option>
+                            <option value="200000-400000">$200K - $400K</option>
+                            <option value="400000-600000">$400K - $600K</option>
+                            <option value="600000+">$600K+</option>
+                        </select>
+                    </div>
+
+                    <!-- Rating Filter -->
+                    <div class="text-left">
+                        <p class="text-[9px] text-zinc-500 uppercase font-bold tracking-widest mb-2">Rating</p>
+                        <select id="rating-filter"
+                            class="bg-zinc-900 border border-zinc-700 rounded-lg outline-none w-full py-2.5 px-3 text-xs appearance-none hover:border-[#E67E22] transition">
+                            <option value="">All Ratings</option>
+                            <option value="4.5">⭐ 4.5+</option>
+                            <option value="4.0">⭐ 4.0+</option>
+                            <option value="3.5">⭐ 3.5+</option>
+                        </select>
+                    </div>
+                </div>
+                <button
+                    class="w-full md:w-auto bg-[#E67E22] text-white px-12 py-3 rounded-xl font-bold hover:bg-[#D35400] transition mt-4 text-xs"
+                    id="search-btn">🔍 Search Now</button>
+            </div>
+        </header>
+
+        <!-- Why Choose Houdy Section -->
+        <section class="bg-[#E67E22] mt-32 py-20 px-6 md:px-20 text-white">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-3xl font-extrabold text-center mb-12">Why Choose Houdy?</h2>
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
                     <div
-                        class="w-10 h-10 bg-orange-50 rounded-full flex items-center justify-center text-[#E67E22] mx-auto mb-4 font-bold">
-                        ★</div>
-                    <h4 class="text-sm font-extrabold mb-2">Affordability</h4>
-                    <p class="text-[10px] text-zinc-400 leading-relaxed">Price rates that suit your student pocket
-                        perfectly.</p>
+                        class="bg-white p-8 rounded-2xl text-center text-[#1A1A1A] shadow-lg hover:shadow-xl transition">
+                        <div
+                            class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-[#E67E22] mx-auto mb-4 font-bold text-xl">
+                            💰</div>
+                        <h4 class="text-sm font-extrabold mb-2">Affordability</h4>
+                        <p class="text-[10px] text-zinc-500">Best prices that suit your budget perfectly.</p>
+                    </div>
+                    <div
+                        class="bg-white p-8 rounded-2xl text-center text-[#1A1A1A] shadow-lg hover:shadow-xl transition">
+                        <div
+                            class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-[#E67E22] mx-auto mb-4 font-bold text-xl">
+                            ⚡</div>
+                        <h4 class="text-sm font-extrabold mb-2">Fast & Easy</h4>
+                        <p class="text-[10px] text-zinc-500">Quick booking process in just minutes.</p>
+                    </div>
+                    <div
+                        class="bg-white p-8 rounded-2xl text-center text-[#1A1A1A] shadow-lg hover:shadow-xl transition">
+                        <div
+                            class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-[#E67E22] mx-auto mb-4 font-bold text-xl">
+                            🔒</div>
+                        <h4 class="text-sm font-extrabold mb-2">Secure</h4>
+                        <p class="text-[10px] text-zinc-500">Safe transactions and verified landlords.</p>
+                    </div>
+                    <div
+                        class="bg-white p-8 rounded-2xl text-center text-[#1A1A1A] shadow-lg hover:shadow-xl transition">
+                        <div
+                            class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-[#E67E22] mx-auto mb-4 font-bold text-xl">
+                            🌟</div>
+                        <h4 class="text-sm font-extrabold mb-2">Quality</h4>
+                        <p class="text-[10px] text-zinc-500">Premium verified accommodations.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <!-- Auth Modals -->
-    <div id="login-modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-        <div class="bg-white rounded-lg p-8 w-96">
-            <h2 class="text-2xl font-bold mb-4">Login</h2>
-            <input type="email" placeholder="Email" class="w-full border rounded px-4 py-2 mb-4" id="login-email">
-            <input type="password" placeholder="Password" class="w-full border rounded px-4 py-2 mb-4"
-                id="login-password">
-            <button id="login-submit"
-                class="w-full bg-[#E67E22] text-white py-2 rounded font-bold hover:bg-[#D35400]">Login</button>
-            <button id="close-login" class="w-full mt-2 bg-gray-300 py-2 rounded">Close</button>
+    <!-- ==================== SPECIAL OFFERS PAGE ==================== -->
+    <div id="special-offers-page" class="page-content hidden">
+        <section class="pt-20 px-6 md:px-20 pb-20">
+            <div class="max-w-7xl mx-auto">
+                <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Special Offers</h1>
+                <p class="text-zinc-500 mb-12 max-w-lg">Exclusive deals and discounted rates for our students</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="special-offers-container">
+                    <!-- Offers will be loaded here -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==================== ALL LISTINGS PAGE ==================== -->
+    <div id="listings-page" class="page-content hidden">
+        <section class="pt-20 px-6 md:px-20 pb-20">
+            <div class="max-w-7xl mx-auto">
+                <h1 class="text-4xl md:text-5xl font-extrabold mb-4">All Listings</h1>
+                <p class="text-zinc-500 mb-12">Browse all available student accommodations</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="all-listings-container">
+                    <!-- Listings will be loaded here -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==================== LOGIN PAGE ==================== -->
+    <div id="login-page" class="page-content hidden">
+        <div
+            class="min-h-screen bg-gradient-to-br from-[#E67E22] to-[#D35400] flex items-center justify-center px-6 py-20">
+            <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md">
+                <!-- Back Button -->
+                <button class="text-zinc-500 hover:text-[#E67E22] mb-6 font-bold flex items-center gap-2"
+                    id="back-from-login">
+                    ← Back
+                </button>
+
+                <h1 class="text-3xl font-extrabold mb-2">Welcome Back</h1>
+                <p class="text-zinc-500 mb-8">Sign in to your Houdy account</p>
+
+                <!-- Login Form -->
+                <form id="login-form" class="space-y-4 mb-6">
+                    <div>
+                        <label class="block text-sm font-bold text-zinc-700 mb-2">Email Address</label>
+                        <input type="email" placeholder="your@email.com" id="login-email-page"
+                            class="w-full border border-zinc-300 rounded-lg px-4 py-3 focus:outline-none focus:border-[#E67E22] transition">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-zinc-700 mb-2">Password</label>
+                        <input type="password" placeholder="••••••••" id="login-password-page"
+                            class="w-full border border-zinc-300 rounded-lg px-4 py-3 focus:outline-none focus:border-[#E67E22] transition">
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-[#E67E22] text-white py-3 rounded-lg font-bold hover:bg-[#D35400] transition">
+                        Sign In
+                    </button>
+                </form>
+
+                <!-- Divider -->
+                <div class="relative mb-6">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-zinc-300"></div>
+                    </div>
+                    <div class="relative flex justify-center text-sm">
+                        <span class="px-2 bg-white text-zinc-500">Or continue with</span>
+                    </div>
+                </div>
+
+                <!-- Social Login Options -->
+                <div class="space-y-3 mb-6">
+                    <!-- Google Login -->
+                    <button type="button"
+                        class="w-full border border-zinc-300 rounded-lg px-4 py-3 flex items-center justify-center gap-3 hover:border-[#E67E22] transition"
+                        id="google-login-btn">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                            <path fill="currentColor"
+                                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                            <path fill="currentColor"
+                                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
+                            <path fill="currentColor"
+                                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+                        </svg>
+                        <span class="font-bold text-sm">Continue with Google</span>
+                    </button>
+
+                    <!-- Apple Login -->
+                    <button type="button"
+                        class="w-full bg-black text-white rounded-lg px-4 py-3 flex items-center justify-center gap-3 hover:bg-zinc-900 transition"
+                        id="apple-login-btn">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M17.05 13.5c-.91 0-1.69.49-2.13 1.25.79 1.19 1.28 2.65 1.28 4.25 0 .45-.03.88-.09 1.31.57.36 1.22.56 1.92.56 2.76 0 5-2.24 5-5s-2.24-5-5-5h-.98z" />
+                            <path
+                                d="M12 1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1m0-1C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0z" />
+                        </svg>
+                        <span class="font-bold text-sm">Continue with Apple</span>
+                    </button>
+                </div>
+
+                <p class="text-center text-zinc-600 text-sm">
+                    Don't have an account? <button type="button" class="text-[#E67E22] font-bold hover:underline"
+                        id="switch-to-signup">Sign up</button>
+                </p>
+            </div>
         </div>
     </div>
 
-    <div id="signup-modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-        <div class="bg-white rounded-lg p-8 w-96">
-            <h2 class="text-2xl font-bold mb-4">Create Account</h2>
-            <input type="text" placeholder="Full Name" class="w-full border rounded px-4 py-2 mb-4" id="signup-name">
-            <input type="email" placeholder="Email" class="w-full border rounded px-4 py-2 mb-4" id="signup-email">
-            <input type="password" placeholder="Password" class="w-full border rounded px-4 py-2 mb-4"
-                id="signup-password">
-            <button id="signup-submit"
-                class="w-full bg-[#E67E22] text-white py-2 rounded font-bold hover:bg-[#D35400]">Sign Up</button>
-            <button id="close-signup" class="w-full mt-2 bg-gray-300 py-2 rounded">Close</button>
+    <!-- ==================== SIGNUP PAGE ==================== -->
+    <div id="signup-page" class="page-content hidden">
+        <div
+            class="min-h-screen bg-gradient-to-br from-[#E67E22] to-[#D35400] flex items-center justify-center px-6 py-20">
+            <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md">
+                <!-- Back Button -->
+                <button class="text-zinc-500 hover:text-[#E67E22] mb-6 font-bold flex items-center gap-2"
+                    id="back-from-signup">
+                    ← Back
+                </button>
+
+                <h1 class="text-3xl font-extrabold mb-2">Create Account</h1>
+                <p class="text-zinc-500 mb-8">Join thousands of students finding their perfect home</p>
+
+                <!-- Signup Form -->
+                <form id="signup-form" class="space-y-4 mb-6">
+                    <div>
+                        <label class="block text-sm font-bold text-zinc-700 mb-2">Full Name</label>
+                        <input type="text" placeholder="John Doe" id="signup-name"
+                            class="w-full border border-zinc-300 rounded-lg px-4 py-3 focus:outline-none focus:border-[#E67E22] transition">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-zinc-700 mb-2">Email Address</label>
+                        <input type="email" placeholder="your@email.com" id="signup-email-page"
+                            class="w-full border border-zinc-300 rounded-lg px-4 py-3 focus:outline-none focus:border-[#E67E22] transition">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-zinc-700 mb-2">Password</label>
+                        <input type="password" placeholder="••••••••" id="signup-password-page"
+                            class="w-full border border-zinc-300 rounded-lg px-4 py-3 focus:outline-none focus:border-[#E67E22] transition">
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="terms-checkbox" class="w-4 h-4 accent-[#E67E22]">
+                        <label for="terms-checkbox" class="ml-2 text-xs text-zinc-600">I agree to the <a href="#"
+                                class="text-[#E67E22] font-bold">Terms & Conditions</a></label>
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-[#E67E22] text-white py-3 rounded-lg font-bold hover:bg-[#D35400] transition">
+                        Create Account
+                    </button>
+                </form>
+
+                <!-- Divider -->
+                <div class="relative mb-6">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-zinc-300"></div>
+                    </div>
+                    <div class="relative flex justify-center text-sm">
+                        <span class="px-2 bg-white text-zinc-500">Or sign up with</span>
+                    </div>
+                </div>
+
+                <!-- Social Signup Options -->
+                <div class="space-y-3 mb-6">
+                    <!-- Google Signup -->
+                    <button type="button"
+                        class="w-full border border-zinc-300 rounded-lg px-4 py-3 flex items-center justify-center gap-3 hover:border-[#E67E22] transition"
+                        id="google-signup-btn">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                            <path fill="currentColor"
+                                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                            <path fill="currentColor"
+                                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
+                            <path fill="currentColor"
+                                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+                        </svg>
+                        <span class="font-bold text-sm">Sign up with Google</span>
+                    </button>
+
+                    <!-- Apple Signup -->
+                    <button type="button"
+                        class="w-full bg-black text-white rounded-lg px-4 py-3 flex items-center justify-center gap-3 hover:bg-zinc-900 transition"
+                        id="apple-signup-btn">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M17.05 13.5c-.91 0-1.69.49-2.13 1.25.79 1.19 1.28 2.65 1.28 4.25 0 .45-.03.88-.09 1.31.57.36 1.22.56 1.92.56 2.76 0 5-2.24 5-5s-2.24-5-5-5h-.98z" />
+                            <path
+                                d="M12 1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1m0-1C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0z" />
+                        </svg>
+                        <span class="font-bold text-sm">Sign up with Apple</span>
+                    </button>
+                </div>
+
+                <p class="text-center text-zinc-600 text-sm">
+                    Already have an account? <button type="button" class="text-[#E67E22] font-bold hover:underline"
+                        id="switch-to-login">Sign in</button>
+                </p>
+            </div>
         </div>
     </div>
 
